@@ -1,0 +1,191 @@
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+		<meta http-equiv="X-UA-Compatible" content="ie=edge">
+		<meta name="keywords" content="футболки, футболки для программистов, футболки для желающих приобрести дудки">
+		<title>7h3 5h0p | Футболка Alien Technology</title>
+		<link rel="stylesheet" href="css/main.css">
+	</head>
+	<body>
+		<header class="header">
+			<div class="header-top">
+				<div class="header-top__the-shop-logo">
+					<a href="#"><img src="img/the_shop_logo.svg" class="header-top__the-shop"></a>
+				</div>
+
+				<div class="header-top__oggetto-logo">
+					<a href="http://oggettoweb.com/"><img src="img/oggetto_logo.svg" class="header-top__oggetto"></a>
+				</div>
+
+				<div class="header-top__phone">
+					<p class="header-top__number">+7 (812) 2&#8226;12&#8226;85&#8226;06</p>
+				</div>
+			</div>
+
+			<div class="header-bottom">
+				<% const navigation = {LISP: "navigation__link_active", OCaml: "", JavaScript: "", Python: "", PHP: ""}; %>
+				<nav class="navigation">
+					<ul class="navigation__list">
+						<% for (let item in navigation) { %>
+						<li class="navigation__item">
+							<a href="#" class = "navigation__link <%= navigation[item] %>"><%= item %></a>
+						</li>
+						<% } %>
+					</ul>
+				</nav>
+
+				<form id="search" class="search">
+					<input class="js-search__input"></input>
+					<input class="js-search__submit"></input>
+				</form>
+			</div>
+		</header>
+
+		<section class="main">
+			<div class="breadcrumbs-container">
+				<nav class="breadcrumbs">
+					<% const breadcrumbs = {LISP: "", Одежда: "", Футболки: "breadcrumbs__link_active"}; %>
+					<ul class="breadcrumbs__list">
+						<% for (let item in breadcrumbs) { %>
+						<li class="breadcrumbs__item">
+							<a href="#" class="breadcrumbs__link <%= breadcrumbs[item] %>"><%= item %></a></li>
+							<% if(breadcrumbs[item] === "") { %> 
+							<li class="breadcrumbs__separator">/</li>
+						<% } %>
+						<% } %>
+					</ul>
+					<!-- <% const breadcrumbs2 = {LISP: "breadcrumbs__link_slash", Одежда: "breadcrumbs__link_slash", Футболки: "breadcrumbs__link_active"}; %>
+					<ul class="breadcrumbs__list">
+						<% for (let item in breadcrumbs2) { %>
+						<li class="breadcrumbs__item">
+							<a href="#" class="breadcrumbs__link <%= breadcrumbs2[item] %>"><%= item %></a></li>
+						<% } %>
+					</ul> -->
+				</nav>
+			</div>
+
+			<div class="product">
+				<div class="product-frame">
+					<img src="img/tshirts/tshirt_white.jpg" alt="Футболка Alien Technology" id="tShirt" class="product-frame__img">
+				</div>
+				<div class="product-details">
+					<div class="product-details__main">
+						<h1 class="product-details__name">Футболка Alien Technology</h1>
+						<p class="product-details__composition">Состав: 100% хлопок, динамическая типизация, польская нотация. Производство: Россия.</p>
+					</div>
+
+					<form id="order" class="js-product-form">
+						<div class="product-details__price">
+							<span data-type="price" data-value="1500" class="js-product-details__rubles">1500 &#8381;</span>
+							</span>
+						</div>
+						<div class="product-details__size">
+							<p>Размер:</p>
+							<div class="product-size">
+								<% const productSize = {s: "js-product-details_inactive", m: "js-product-details_active", l: "js-product-details_inactive"}; %>
+								<ul class="product-size__list">
+									<% for (let item in productSize) { %>
+									<li data-type="size" data-value="<%= item %>" id="<%= item %>Box" class="js-product-size__item product-size__item_<%= item %> <%= productSize[item] %> js-product-details"><%= item.charAt(0).toUpperCase() %></li>
+									<% } %>
+								</ul>
+							</div>
+						</div>
+						<div class="product-details__color">
+							<p>Цвет:</p>
+							<div class="product-color">
+								<% const productColor = {white: "js-product-details_active", yellow: "js-product-details_inactive", green: "js-product-details_inactive"}; %>
+								<ul class="product-color__list">
+									<% for (let item in productColor) { %>
+									<li data-type="color" data-value="<%= item %>"id="<%= item %>Box" class="js-product-color__item product-color__item_<%= item %> <%= productColor[item] %> js-product-details"></li>
+									<% } %>
+								</ul>
+
+							</div>
+						</div>
+						<div>
+							<a href="#"><button class="js-product-details__buy">Купить</button></a>
+						</div>
+					</form>
+
+					<div class="product-details__cart">
+						<p><img src="img/icons/heart_grey.svg" class="product-details__cart-img"><a href="#" class="product-details__cart-send">Отложить на потом</a></p>
+					</div>
+				</div>
+			</div>
+		</section>
+
+		<footer class="footer">
+			<div class = "footer-top">
+				<div class="footer-links">
+					<div class="footer-links__column">
+						<h4><a href="#" class="footer-links__reference">Сервис и поддержка</a></h4>
+						<% const footerLinks1 = ['Как сделать заказ', 'Возврат товара', 'Публичная оферта', 'Доставка'] %>
+						<ul class="footer-links__subcolumn">
+							<% footerLinks1.forEach(function(item) { %>
+							<li>
+								<a href="#" class="footer-links__reference"><%= item %></a>
+							</li>
+							<% }); %>
+						</ul>
+
+						<% const footerLinks2 = ['Способы оплаты', 'Правила продажи', 'Возврат денежных средств', 'Вопросы и ответы'] %>
+						<ul class="footer-links__subcolumn">
+							<% footerLinks2.forEach(function(item) { %>
+							<li>
+								<a href="#" class="footer-links__reference"><%= item %></a>
+							</li>
+							<% }); %>
+						</ul>
+					</div>
+					<div class="footer-links__column">
+						<h4><a href="#" class="footer-links__reference">О компании</a></h4>
+						<% const footerLinks3 = ['О нас', 'Контакты', 'Вакансии', 'Партнерам'] %>
+						<ul class="footer-links__subcolumn">
+							<% footerLinks3.forEach(function(item) { %>
+							<li>
+								<a href="#" class="footer-links__reference"><%= item %></a>
+							</li>
+							<% }); %>
+						</ul>
+
+						<% const footerLinks4 = ['Сертификаты', 'Преимущества', 'Наши скидки'] %>
+						<ul class="footer-links__subcolumn">
+							<% footerLinks4.forEach(function(item) { %>
+							<li>
+								<a href="#" class="footer-links__reference"><%= item %></a>
+							</li>
+							<% }); %>
+						</ul>
+					</div>
+				</div>
+				<div class="footer-else">
+					<% const footerAdvantages = {delivery: "бесплатная доставка от 4000 ₽", samples: "пробники в подарок при каждой покупке", bonus: "акции и подарки за покупку"}; %>
+					<div class="footer-advantages">
+						<% for (let item in footerAdvantages) { %>
+						<p class="footer-advantages__<%= item %>">
+							<img src="img/icons/<%= item %>.svg" class="footer-advantages__<%= item %>-img">
+							<span class="footer-advantages__text"><%= footerAdvantages[item] %></span>
+						</p>
+						<% } %>
+					</div>
+					<% const footerSocial = ['facebook', 'twitter', 'instagram'] %>
+					<div class="footer-social">
+						<% footerSocial.forEach(function(item) { %>
+						<a href="#"><img src="img/icons/<%= item %>.svg" class="footer-social__<%= item %>"></a>
+						<% }); %>
+					</div>		
+				</div>
+			</div>
+			<div class = "footer-bottom">
+				<div class="footer-bottom__item">
+					<p>2005-2017 &#169; 7h35h0p.ru — модный интернет-магазин одежды, обуви и аксессуаров.</p>
+					<p>Все права защищены. Доставка по всей России!</p>
+				</div>
+			</div>
+		</footer>
+
+		<script src="js/scripts.js"></script>
+	</body>
+</html>
