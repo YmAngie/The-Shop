@@ -54,11 +54,11 @@ gulp.task('html', () => {
     gulp.src('src/index.ejs')
         .pipe(ejs().on('error', gutil.log))
         .pipe(rename('index.html'))
-            .pipe(gulp.dest('./dist'));
+        .pipe(gulp.dest('./dist'));
 });
 
 gulp.task('eslint', () => {
-    return gulp.src(['src/js/**/*.*', '!node_modules/**'])
+    return gulp.src(['src/js/**/*.*', 'gulpfile.js', '!node_modules/**'])
         .pipe(eslint())
         .pipe(eslint.format())
         .pipe(eslint.failAfterError());

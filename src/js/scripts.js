@@ -24,26 +24,26 @@ document.querySelector('.js-product-form').addEventListener('click', event => {
 function updateBorders(elements, target) {
     [].forEach.call(elements, function (element) {
         if (element === target) {
-            activate(element, true);
+            activate(element, true, 'product-details_active', 'product-details_inactive');
         } else {
-            activate(element, false);
+            activate(element, false, 'product-details_active', 'product-details_inactive');
         }
     });
 }
 
-function activate(target, isActive) {
+function activate(target, isActive, addClass, delClass) {
     if (isActive === true) {
-        target.classList.add('js-product-details_active');
-        target.classList.remove('js-product-details_inactive');
+        target.classList.add(addClass);
+        target.classList.remove(delClass);
     } else {
-        target.classList.add('js-product-details_inactive');
-        target.classList.remove('js-product-details_active');
+        target.classList.add(delClass);
+        target.classList.remove(addClass);
     }
 }
 
-document.querySelector('.js-product-details__buy').addEventListener('click', function() {
-    const price = document.querySelector('.js-product-details__rubles').getAttribute('data-value');
-    const active = document.querySelectorAll('.js-product-details_active');
+document.querySelector('.js-product-form').addEventListener('submit', function() {
+    const price = document.querySelector('.js-product-details__currency').getAttribute('data-value');
+    const active = document.querySelectorAll('.product-details_active');
     const parameters = { price: price };
     [].forEach.call(active, function (element) {
         if (element.classList.contains('js-product-size__item')) {
@@ -53,21 +53,20 @@ document.querySelector('.js-product-details__buy').addEventListener('click', fun
         }
     });
 
-    const form = document.getElementById('order');
-    post(form, 'http://localhost:3000/', parameters);
+    const orderForm = document.getElementById('order');
+    sendRequest(orderForm, 'http://localhost:3000/', parameters);
 });
 
-document.querySelector('.js-search__submit').addEventListener('click', function() {
+document.querySelector('.js-search').addEventListener('submit', function() {
     const text = document.querySelector('.js-search__input').value;
     const parameters = { text: text };
 
-    const form = document.getElementById('search');
-    post(form, 'http://localhost:3000/', parameters);
+    const searchForm = document.getElementById('search');
+    sendRequest(searchForm, 'http://localhost:3000/', parameters);
 });
 
-function post(form, path, parameters) {
-    form.setAttribute('action', path);
-    form.setAttribute('method', 'post');
+function sendRequest(form, path, parameters) {
+    event.preventDefault();
     for (const key in parameters) {
         if (parameters.hasOwnProperty(key)) {
             const hiddenField = document.createElement('input');
