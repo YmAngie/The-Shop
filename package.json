@@ -7,8 +7,8 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "gulp",
     "dev": "gulp",
-    "prod": "gulp prod",
     "lint": "eslint src && stylelint src/less/*.less !src/less/normalize.less",
+    "prod": "NODE_ENV=production gulp prod",
     "precommit": "npm run lint"
   },
   "author": "Andrey Miskov",

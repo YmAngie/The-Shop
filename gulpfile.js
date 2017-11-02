@@ -10,6 +10,8 @@ const stylelint = require('gulp-stylelint');
 const sourcemaps = require('gulp-sourcemaps');
 const imagemin = require('gulp-imagemin');
 
+const env = process.env.NODE_ENV || 'development';
+
 // Автоперезагрузка при изменении файлов в папке `dist`:
 // Принцип: меняем файлы в `/src`, они обрабатываются и переносятся в `dist` и срабатывает автоперезагрузка.
 // Это таск нужен только при локальной разработке.
@@ -36,12 +38,7 @@ gulp.task('styles', () => {
 
 gulp.task('img', () => {
     gulp.src('src/img/**/*.*')
-        .pipe(gulp.dest('./dist/img'));
-});
-
-gulp.task('img-prod', () => {
-    gulp.src('src/img/**/*.*')
-        .pipe(imagemin())
+        .pipe((env === 'development') || imagemin())
         .pipe(gulp.dest('./dist/img'));
 });
 
@@ -83,5 +80,5 @@ gulp.task('watch', () => {
 });
 
 gulp.task('default', ['stylelint', 'styles', 'html', 'img', 'eslint', 'js', 'livereload', 'watch']);
-gulp.task('prod', ['stylelint', 'styles', 'html', 'img-prod', 'eslint', 'js']);
+gulp.task('prod', ['stylelint', 'styles', 'html', 'img', 'eslint', 'js']); 
 gulp.task('lint', ['stylelint', 'eslint']);
