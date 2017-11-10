@@ -26,7 +26,7 @@ body {
     height: 60%;
     width: 86%;
     text-align: center;
-    padding: 15px 7%;
+    padding: 7px 7%;
 
     &::before {
         content: '';
@@ -35,9 +35,8 @@ body {
         vertical-align: middle;
     }
 
-    @media @phone-strict {
-        padding-top: 7px;
-        padding-bottom: 7px;
+    @media @tablet {
+        padding: 15px 7%;
     }
 }
 
@@ -46,36 +45,41 @@ body {
     float: left;
 
     &__img {
-        width: 30%;
+        width: 80px;
         float: left;
-        padding-top: 15px;
+        padding-top: 8px;
 
-        @media @phone-strict {
-            width: 50%;
-            padding-top: 6px;
+        @media @tablet {
+            width: 100px;
+            padding-top: 10px;
+        }
+
+        @media @desktop {
+            width: 120px;
+            padding-top: 10px;
         }
     }
 }
 
 .oggetto-logo {
     display: inline-block;
-    width: 33%;
+    width: 25px;
 
     &__img {
-        width: 14%;
+        width: 30px;
         display: inline-block;
         vertical-align: middle;
 
-        @media @phone-strict {
-            width: 20%;
+        @media @tablet-strict {
+            width: 35px;
         }
 
-        @media @tablet-strict {
-            width: 17%;
+        @media @desktop {
+            width: 40px;
         }
 
         @media @large {
-            width: 13%;
+            width: 45px;
         }
     }
 }
@@ -85,23 +89,22 @@ body {
     line-height: 30px;
     float: right;
 
-    &__img {
+    &__text {
         color: @oggetto-color;
         margin: 0;
-        padding: 0;
+        padding: 10px 0;
         font-weight: bold;
-        font-size: 1.1em;
         float: right;
         line-height: 1.1em;
-        padding-top: 18px;
-
-        @media @phone-strict {
-            font-size: .5em;
-            padding-top: 6px;
-        }
+        font-size: .7em;
 
         @media @tablet-strict {
             font-size: .9em;
+        }
+
+        @media @desktop {
+            font-size: 1.1em;
+            padding: 13px 0;
         }
 
         @media @large {
@@ -111,6 +114,9 @@ body {
 }
 
 .header-bottom {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
     clear: both;
     background: @main-grey-color;
     height: 40%;
@@ -124,9 +130,10 @@ body {
 
 .navigation {
     float: left;
+    font-size: .8em;
 
-    @media @phone-strict {
-        font-size: .6em;
+    @media @tablet {
+        font-size: 1em;
     }
 
     &__list {
@@ -135,10 +142,10 @@ body {
 
     &__item {
         display: inline-block;
-        padding-right: 13px;
+        padding-right: 7px;
 
-        @media @phone-strict {
-            padding-right: 7px;
+        @media @tablet {
+            padding-right: 13px;
         }
     }
 
@@ -156,10 +163,7 @@ body {
     float: right;
     position: relative;
     padding-top: 10px;
-
-    @media @phone-strict {
-        display: none;
-    }
+    padding-bottom: 10px;
 
     &__input {
         padding: 5px 37px 5px 15px;
@@ -168,7 +172,7 @@ body {
 
     &__submit {
         position: absolute;
-        top: 3px;
+        top: 0;
         right: 0;
         width: 37px;
         height: 100%;
@@ -229,15 +233,15 @@ body {
 }
 
 .product-frame {
-    float: left;
-    height: 50%;
-    width: 50%;
-    padding-bottom: 110px;
+    float: none;
+    width: 100%;
+    padding-bottom: 20px;
 
-    @media @phone-strict {
-        float: none;
-        width: 100%;
-        padding-bottom: 20px;
+    @media @tablet {
+        float: left;
+        height: 50%;
+        width: 50%;
+        padding-bottom: 110px;
     }
 
     &__img {
@@ -247,14 +251,13 @@ body {
 }
 
 .product-details {
-    float: right;
-    height: 50%;
-    width: 45%;
+    width: 100%;
+    padding-bottom: 50px;
 
-    @media @phone-strict {
-        float: none;
-        width: 100%;
-        padding-bottom: 50px;
+    @media @tablet {
+        float: right;
+        height: 50%;
+        width: 45%;
     }
 
     &_active {
@@ -266,12 +269,14 @@ body {
     }
 
     &__main {
-        @media @phone-strict {
-            font-size: .8em;
-            text-align: center;
+        font-size: .8em;
+        text-align: center;
+
+        @media @tablet {
+            text-align: left;
         }
 
-        @media @tablet-strict {
+        @media @tablet {
             font-size: .8em;
         }
     }
@@ -281,43 +286,58 @@ body {
     }
 
     &__price {
+        text-align: center;
 
-        @media @phone-strict {
-            text-align: center;
+        @media @tablet {
+            text-align: left;
         }
     }
 
     &__currency {
-        font-size: 2em;
+        font-size: 1.5em;
         color: @oggetto-color;
         font-weight: bold;
 
-        @media @phone-strict {
+        @media @tablet-strict {
             font-size: 1.5em;
         }
 
-        @media @tablet-strict {
-            font-size: 1.5em;
+        @media @desktop {
+            font-size: 2em;
         }
     }
 
     &__size {
-        @media @phone-strict {
-            float: left;
-        }
+        float: left;
 
         @media @tablet-strict {
             float: left;
+        }
+
+        @media @desktop {
+            float: none;
         }
     }
 
     &__color{
-        @media @phone-strict {
-            float: right;
-        }
+        float: right;
 
         @media @tablet-strict {
             float: right;
+        }
+
+        @media @desktop {
+            float: none;
+        }
+    }
+
+    &__buy-container {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        @media @tablet {
+            display: block;
         }
     }
 
@@ -325,52 +345,64 @@ body {
         background-color: @oggetto-color;
         color: white;
         border: 0;
-        padding: 20px 45px;
-        font-size: 1.7em;
         margin-top: 10px;
         margin-bottom: 10px;
         cursor: pointer;
         font-family: Roboto, sans-serif;
-
-        @media @phone-strict {
-            padding: 15px 28px;
-            font-size: 1em;
-            clear: both;
-            float: left;
-        }
+        padding: 15px 28px;
+        font-size: 1em;
 
         @media @tablet-strict {
             padding: 15px 28px;
             font-size: 1em;
         }
+
+        @media @desktop {
+            padding: 20px 45px;
+            font-size: 1.7em;
+        }
     }
 
     &__wishlist-container {
-        @media @phone-strict {
-            float: right;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        @media @tablet {
+            display: block;
         }
     }
 
     &__wishlist-img {
         vertical-align: middle;
+        width: 15px;
 
-        @media @phone-strict {
-            width: 7%;
+        @media @tablet {
+            width: 20px;
         }
     }
 
     &__wishlist-send {
         color: @wishlist-send-color;
         padding-left: 10px;
-        font-size: .9em;
+        font-size: .7em;
 
-        @media @phone-strict {
-            font-size: .7em;
+        @media @tablet {
+            font-size: .9em;
         }
     }
 
     &__wishlist-send:hover {
         color: @wishlist-send-hover-color;
+    }
+}
+
+.product-details-i {
+    display: flex;
+    justify-content: space-around;
+
+    @media @tablet {
+        display: block;
     }
 }
 
@@ -383,50 +415,50 @@ body {
     &__item {
         display: inline-block;
         margin-right: 5px;
-        font-size: 2em;
-
-        @media @phone-strict {
-            font-size: 1em;
-        }
+        font-size: 1em;
 
         @media @tablet-strict {
             font-size: 1.2em;
         }
+
+        @media @desktop {
+            font-size: 2em;
+        }
     }
 
     &__item_s {
-        padding: 8px 17px;
-
-        @media @phone-strict {
-            padding: 8px 14px;
-        }
+        padding: 8px 14px;
 
         @media @tablet-strict {
             padding: 7px 13px;
+        }
+
+        @media @desktop {
+            padding: 8px 17px;
         }
     }
 
     &__item_m {
-        padding: 8px 14px;
-
-        @media @phone-strict {
-            padding: 8px 12px;
-        }
+        padding: 8px 12px;
 
         @media @tablet-strict {
             padding: 7px 11px;
         }
+
+        @media @desktop {
+            padding: 8px 14px;
+        }
     }
 
     &__item_l {
-        padding: 8px 18px;
-
-        @media @phone-strict {
-            padding: 8px 14px;
-        }
+        padding: 8px 14px;
 
         @media @tablet-strict {
             padding: 7px 13px;
+        }
+
+        @media @desktop {
+            padding: 8px 18px;
         }
     }
 }
@@ -439,16 +471,16 @@ body {
 
     &__item {
         display: inline-block;
-        padding: 27px;
-        margin-right: 5px;
-
-        @media @phone-strict {
-            padding: 15px;
-            margin-right: 3px;
-        }
+        padding: 15px;
+        margin-right: 3px;
 
         @media @tablet-strict {
             padding: 17px;
+        }
+
+        @media @desktop {
+            padding: 27px;
+            margin-right: 5px;
         }
     }
 
@@ -473,41 +505,31 @@ body {
     clear: both;
     font-size: .7em;
 
-    @media @phone-strict {
-        font-size: .5em;
-    }
-
     @media @tablet-strict {
         font-size: .8em;
     }
 
     @media @large {
-        font-size: .9em;
+        font-size: .8em;
     }
 }
 
 .footer-top {
-    width: 93%;
+    width: 86%;
     background: @main-grey-color;
-    padding-top: 30px;
-    padding-left: 7%;
-    padding-bottom: 35px;
+    padding: 30px 7% 35px;
     border-top: 1.5px solid @border-grey-color;
     margin: 0 auto;
 }
 
 .footer-links {
-    width: 60%;
-    float: left;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
 
-    @media @phone-strict {
-        float: none;
-        width: 100%;
-    }
-
-    @media @tablet-strict {
-        float: none;
-        width: 100%;
+    @media @desktop {
+        float: left;
+        width: 60%;
     }
 
     &__column {
@@ -524,81 +546,80 @@ body {
         list-style-type: none;
         padding-left: 0;
         margin-top: 0;
-        margin-right: 40px;
+        margin-right: 10px;
         vertical-align: top;
 
-        @media @phone-strict {
-            margin-right: 10px;
+        @media @tablet-strict {
+            margin-right: 50px;
         }
 
-        @media @tablet-strict {
-            margin-right: 65px;
+        @media @desktop {
+            margin-right: 30px;
         }
 
         @media @large {
-            margin-right: 70px;
+            margin-right: 55px;
         }
     }
 
     &__item {
-        padding-bottom: 10px;
+        padding-bottom: 5px;
 
-        @media @phone-strict {
-            padding-bottom: 5px;
+        @media @tablet {
+            padding-bottom: 10px;
         }
     }
 }
 
 .footer-else {
-    width: 40%;
-    float: right;
-
-    @media @phone-strict {
-        float: none;
-        width: 100%;
-    }
+    width: 100%;
 
     @media @tablet-strict {
         float: none;
         width: 100%;
     }
+
+    @media @desktop {
+        float: right;
+        width: 40%;
+    }
 }
 
 .footer-advantages {
-    width: 70%;
+    width: 60%;
     float: left;
     padding-top: 8px;
     padding-right: 0;
-
-    @media @phone-strict {
-        width: 60%;
-    }
 
     @media @tablet-strict {
         width: 50%;
     }
 
-    &__delivery {
-        margin-bottom: 23px;
+    @media @desktop {
+        width: 70%;
+    }
 
-        @media @phone-strict {
-            margin-bottom: 10px;
-        }
+    &__delivery {
+        margin-bottom: 10px;
 
         @media @tablet-strict {
             margin-bottom: 10px;
+        }
+
+        @media @desktop {
+            margin-bottom: 23px;
         }
     }
 
     &__samples {
-        margin-bottom: 23px;
-
-        @media @phone-strict {
-            margin-bottom: 10px;
-        }
+        margin-bottom: 10px;
 
         @media @tablet-strict {
             margin-bottom: 10px;
+        }
+
+        @media @desktop {
+            margin-bottom: 23px;
         }
     }
 
@@ -610,112 +631,114 @@ body {
     &__delivery-img {
         display: inline-block;
         vertical-align: middle;
-        width: 9%;
-
-        @media @phone-strict {
-            width: 12%;
-        }
+        width: 12%;
 
         @media @tablet-strict {
             width: 7%;
+        }
+
+        @media @desktop {
+            width: 9%;
         }
     }
 
     &__samples-img {
         display: inline-block;
         vertical-align: middle;
-        width: 5.5%;
+        width: 7%;
         padding-left: 15px;
-
-        @media @phone-strict {
-            width: 7%;
-        }
 
         @media @tablet-strict {
             width: 4.3%;
+        }
+
+        @media @desktop {
+            width: 5.5%;
         }
     }
 
     &__bonus-img {
         display: inline-block;
         vertical-align: middle;
-        width: 5.5%;
+        width: 7%;
         padding-left: 15px;
-
-        @media @phone-strict {
-            width: 7%;
-        }
 
         @media @tablet-strict {
             width: 4.4%;
+        }
+
+        @media @desktop {
+            width: 5.5%;
         }
     }
 }
 
 .footer-social {
     float: right;
-    width: 30%;
-
-    @media @phone-strict {
-        width: 40%;
-        display: inline-block;
-        margin-top: 20px;
-    }
+    width: 40%;
+    display: inline-block;
+    margin-top: 20px;
 
     @media @tablet-strict {
         width: 50%;
         display: inline-block;
     }
 
-    &__facebook {
-        width: 8%;
-        display: block;
-        margin: 20px;
-        padding-left: 5px;
+    @media @desktop {
+        width: 30%;
+        display: inline-block;
+        margin-top: 0;
+    }
 
-        @media @phone-strict {
-            width: 6%;
-            display: inline-block;
-            margin: 8px;
-        }
+    &__facebook {
+        width: 6%;
+        display: inline-block;
+        margin: 8px;
 
         @media @tablet-strict {
             width: 5%;
             display: inline-block;
         }
+
+        @media @desktop {
+            width: 8%;
+            display: block;
+            margin: 20px;
+            padding-left: 5px;
+        }
     }
 
     &__twitter{
-        width: 14%;
-        display: block;
-        margin: 20px;
-
-        @media @phone-strict {
-            width: 10%;
-            display: inline-block;
-            margin: 8px;
-        }
+        width: 10%;
+        display: inline-block;
+        margin: 8px;
 
         @media @tablet-strict {
             width: 9%;
             display: inline-block;
+        }
+
+        @media @desktop {
+            width: 14%;
+            display: block;
+            margin: 20px;
         }
     }
 
     &__instagram {
-        width: 14%;
-        display: block;
-        margin: 20px;
-
-        @media @phone-strict {
-            width: 10%;
-            display: inline-block;
-            margin: 8px;
-        }
+        width: 10%;
+        display: inline-block;
+        margin: 8px;
 
         @media @tablet-strict {
             width: 9%;
             display: inline-block;
+        }
+
+        @media @desktop {
+            width: 14%;
+            display: block;
+            margin: 20px;
         }
     }
 }

@@ -20,7 +20,7 @@
 				</div>
 
 				<div class="phone-number">
-					<p class="phone-number__img">+7 (812) 2&#8226;12&#8226;85&#8226;06</p>
+					<p class="phone-number__text">+7 (812) 2&#8226;12&#8226;85&#8226;06</p>
 				</div>
 			</div>
 
@@ -84,36 +84,40 @@
 						<div class="product-details__price">
 							<span data-type="price" data-value="1500" class="product-details__currency js-product-details__currency">1500 &#8381;</span>
 						</div>
-						<div class="product-details__size">
-							<p class="product-details__title">Размер:</p>
-							<div class="product-size">
-								<% const productSize = [
-									{ title: 's', addClass: 'product-details_inactive' }, 
-									{ title: 'm', addClass: 'product-details_active' }, 
-									{ title: 'l', addClass: 'product-details_inactive' }
-								]; %>
-								<ul class="product-size__list">
-									<% productSize.forEach(function (item) { %>
-									<li data-type="size" data-value="<%= item.title %>" class="product-size__item js-product-size__item product-size__item_<%= item.title %> <%= item.addClass %> js-product-details"><%= item.title.charAt(0).toUpperCase() %></li>
-									<% }); %>
-								</ul>
+
+						<div class="product-details-i">
+							<div class="product-details__size">
+								<p class="product-details__title">Размер:</p>
+								<div class="product-size">
+									<% const productSize = [
+										{ title: 's', addClass: 'product-details_inactive' },
+										{ title: 'm', addClass: 'product-details_active' },
+										{ title: 'l', addClass: 'product-details_inactive' }
+									]; %>
+									<ul class="product-size__list">
+										<% productSize.forEach(function (item) { %>
+										<li data-type="size" data-value="<%= item.title %>" class="product-size__item js-product-size__item product-size__item_<%= item.title %> <%= item.addClass %> js-product-details"><%= item.title.charAt(0).toUpperCase() %></li>
+										<% }); %>
+									</ul>
+								</div>
+							</div>
+							<div class="product-details__color">
+								<p class="product-details__title">Цвет:</p>
+								<div class="product-color">
+									<% const productColor = [
+										{ title: 'white', addClass: 'product-details_active' },
+										{ title: 'yellow', addClass: 'product-details_inactive' },
+										{ title: 'green', addClass: 'product-details_inactive' },
+									]; %>
+									<ul class="product-color__list">
+										<% productColor.forEach(function (item) { %>
+										<li data-type="color" data-value="<%= item.title %>" class="product-color__item js-product-color__item product-color__item_<%= item.title %> <%= item.addClass %> js-product-details"></li>
+										<% }); %>
+									</ul>
+								</div>
 							</div>
 						</div>
-						<div class="product-details__color">
-							<p class="product-details__title">Цвет:</p>
-							<div class="product-color">
-								<% const productColor = [
-									{ title: 'white', addClass: 'product-details_active' },
-									{ title: 'yellow', addClass: 'product-details_inactive' },
-									{ title: 'green', addClass: 'product-details_inactive' },
-								]; %>
-								<ul class="product-color__list">
-									<% productColor.forEach(function (item) { %>
-									<li data-type="color" data-value="<%= item.title %>" class="product-color__item js-product-color__item product-color__item_<%= item.title %> <%= item.addClass %> js-product-details"></li>
-									<% }); %>
-								</ul>
-							</div>
-						</div>
+
 						<div class="product-details__buy-container">
 							<button type="submit" class="product-details__buy">Купить</button>
 						</div>
@@ -173,11 +177,11 @@
 						</ul>
 					</div>
 				</div>
-				
+
 				<div class="footer-else">
 					<% const footerAdvantages = {
-						delivery: "бесплатная доставка от 4000 ₽", 
-						samples: "пробники в подарок при каждой покупке", 
+						delivery: "бесплатная доставка от 4000 ₽",
+						samples: "пробники в подарок при каждой покупке",
 						bonus: "акции и подарки за покупку"
 					}; %>
 					<div class="footer-advantages">
