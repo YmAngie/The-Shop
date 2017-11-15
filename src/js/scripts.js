@@ -1,25 +1,57 @@
-document.querySelector('.js-product-form').addEventListener('click', event => {
-    if (!event.target.matches('.js-product-details')) {
-        return;
+const Dispatcher = document.getElementById('doc');
+
+class PropertySelector {
+    constructor(el) {
+        this.el = el;
+
+        this.el.addEventListener('click', ev => {
+            const type = ev.target.dataset['type'];
+            const value = ev.target.dataset['value'];
+            const target = ev.target;
+
+            this.dispatchEvent(type, value, target);
+        });
     }
 
-    const target = event.target;
+    dispatchEvent(type, value, target) {
+        const event = new CustomEvent('property-selected', {
+            detail: {
+                type: type,
+                value: value,
+                target: target
+            }
+        });
+        
+        Dispatcher.dispatchEvent(event);
+    }
+}
 
-    const color = target.getAttribute('data-value');
-    if (target.classList.contains('js-product-color__item')) {
-        document.getElementById('tShirt').src = 'img/tshirts/tshirt_' + color + '.jpg';
+new PropertySelector(document.getElementById('colorList'));
+new PropertySelector(document.getElementById('sizeList'));
+
+Dispatcher.addEventListener('property-selected', ev => {
+    const data = ev.detail;
+
+    if (data.type === 'color') {
+        changePicture(data.value);
+        const colorElements = document.getElementsByClassName('js-product-color__item');
+        updateBorders(colorElements, data.target);
     }
 
-    const colorElements = document.getElementsByClassName('js-product-color__item');
-    if (target.classList.contains('js-product-color__item')) {
-        updateBorders(colorElements, target);
-    }
-
-    const sizeElements = document.getElementsByClassName('js-product-size__item');
-    if (target.classList.contains('js-product-size__item')) {
-        updateBorders(sizeElements, target);
+    if (data.type === 'size') {
+        changePrice();
+        const sizeElements = document.getElementsByClassName('js-product-size__item');
+        updateBorders(sizeElements, data.target);
     }
 });
+
+function changePrice() {
+    document.getElementById('priceValue').innerHTML = +randomInteger(500, 1500);
+}
+
+function changePicture(color) {
+    document.getElementById('productPicture').src = 'img/tshirts/tshirt_' + color + '.jpg';
+}
 
 function updateBorders(elements, target) {
     [].forEach.call(elements, function (element) {
@@ -41,8 +73,14 @@ function activate(target, isActive, addClass, delClass) {
     }
 }
 
+function randomInteger(min, max) {
+    let randomNum = min - 0.5 + Math.random() * (max - min + 1);
+    randomNum = Math.round(randomNum);
+    return randomNum;
+}
+
 document.querySelector('.js-product-form').addEventListener('submit', function() {
-    const price = document.querySelector('.js-product-details__currency').getAttribute('data-value');
+    const price = document.querySelector('.js-product-details__currency').innerHTML;
     const active = document.querySelectorAll('.product-details_active');
     const parameters = { price: price };
     [].forEach.call(active, function (element) {

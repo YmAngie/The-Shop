@@ -8,7 +8,7 @@
 		<title>7h3 5h0p | Футболка Alien Technology</title>
 		<link rel="stylesheet" href="css/main.css">
 	</head>
-	<body>
+	<body id="doc">
 		<header class="header">
 			<div class="header-top">
 				<div class="the-shop-logo">
@@ -71,7 +71,7 @@
 
 			<div class="product">
 				<div class="product-frame">
-					<img src="img/tshirts/tshirt_white.jpg" alt="Футболка Alien Technology" id="tShirt" class="product-frame__img">
+					<img src="img/tshirts/tshirt_white.jpg" alt="Футболка Alien Technology" id="productPicture" class="product-frame__img">
 				</div>
 				
 				<div class="product-details">
@@ -82,7 +82,7 @@
 
 					<form method="post" action="path" id="order" class="product-form js-product-form">
 						<div class="product-details__price">
-							<span data-type="price" data-value="1500" class="product-details__currency js-product-details__currency">1500 &#8381;</span>
+							<span id="priceValue" data-type="price" data-value="1500" class="product-details__currency js-product-details__currency">1500 &#8381;</span>
 						</div>
 
 						<div class="product-details-i">
@@ -94,7 +94,7 @@
 										{ title: 'm', addClass: 'product-details_active' },
 										{ title: 'l', addClass: 'product-details_inactive' }
 									]; %>
-									<ul class="product-size__list">
+									<ul id="sizeList" class="product-size__list">
 										<% productSize.forEach(function (item) { %>
 										<li data-type="size" data-value="<%= item.title %>" class="product-size__item js-product-size__item product-size__item_<%= item.title %> <%= item.addClass %> js-product-details"><%= item.title.charAt(0).toUpperCase() %></li>
 										<% }); %>
@@ -109,7 +109,7 @@
 										{ title: 'yellow', addClass: 'product-details_inactive' },
 										{ title: 'green', addClass: 'product-details_inactive' },
 									]; %>
-									<ul class="product-color__list">
+									<ul id="colorList" class="product-color__list">
 										<% productColor.forEach(function (item) { %>
 										<li data-type="color" data-value="<%= item.title %>" class="product-color__item js-product-color__item product-color__item_<%= item.title %> <%= item.addClass %> js-product-details"></li>
 										<% }); %>
