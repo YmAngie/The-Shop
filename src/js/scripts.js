@@ -1,49 +1,87 @@
-document.querySelector('.js-product-form').addEventListener('click', event => {
-    if (!event.target.matches('.js-product-details')) {
-        return;
+const Dispatcher = document.getElementById('doc');
+
+class PropertySelector {
+    constructor(el) {
+        this.el = el;
+
+        this.el.addEventListener('click', ev => {
+            const type = ev.target.dataset['type'];
+            const value = ev.target.dataset['value'];
+            const target = ev.target;
+
+            this.dispatchEvent(type, value, target);
+        });
     }
 
-    const target = event.target;
+    dispatchEvent(type, value, target) {
+        const event = new CustomEvent('property-selected', {
+            detail: {
+                type: type,
+                value: value,
+                target: target
+            }
+        });
+        
+        Dispatcher.dispatchEvent(event);
+    }
+}
 
-    const color = target.getAttribute('data-value');
-    if (target.classList.contains('js-product-color__item')) {
-        document.getElementById('tShirt').src = 'img/tshirts/tshirt_' + color + '.jpg';
+new PropertySelector(document.getElementById('colorList'));
+new PropertySelector(document.getElementById('sizeList'));
+
+Dispatcher.addEventListener('property-selected', ev => {
+    const data = ev.detail;
+
+    if (data.type === 'color') {
+        changePicture(data.value);
+        const colorElements = document.getElementsByClassName('js-product-color__item');
+        updateBorders(colorElements, data.target);
     }
 
-    const colorElements = document.getElementsByClassName('js-product-color__item');
-    if (target.classList.contains('js-product-color__item')) {
-        updateBorders(colorElements, target);
-    }
-
-    const sizeElements = document.getElementsByClassName('js-product-size__item');
-    if (target.classList.contains('js-product-size__item')) {
-        updateBorders(sizeElements, target);
+    if (data.type === 'size') {
+        changePrice();
+        const sizeElements = document.getElementsByClassName('js-product-size__item');
+        updateBorders(sizeElements, data.target);
     }
 });
+
+function changePrice() {
+    document.getElementById('priceValue').innerHTML = +randomInteger(500, 1500);
+}
+
+function changePicture(color) {
+    document.getElementById('productPicture').src = 'img/tshirts/tshirt_' + color + '.jpg';
+}
 
 function updateBorders(elements, target) {
     [].forEach.call(elements, function (element) {
         if (element === target) {
-            activate(element, true);
+            activate(element, true, 'product-details_active', 'product-details_inactive');
         } else {
-            activate(element, false);
+            activate(element, false, 'product-details_active', 'product-details_inactive');
         }
     });
 }
 
-function activate(target, isActive) {
+function activate(target, isActive, addClass, delClass) {
     if (isActive === true) {
-        target.classList.add('js-product-details_active');
-        target.classList.remove('js-product-details_inactive');
+        target.classList.add(addClass);
+        target.classList.remove(delClass);
     } else {
-        target.classList.add('js-product-details_inactive');
-        target.classList.remove('js-product-details_active');
+        target.classList.add(delClass);
+        target.classList.remove(addClass);
     }
 }
 
-document.querySelector('.js-product-details__buy').addEventListener('click', function() {
-    const price = document.querySelector('.js-product-details__rubles').getAttribute('data-value');
-    const active = document.querySelectorAll('.js-product-details_active');
+function randomInteger(min, max) {
+    let randomNum = min - 0.5 + Math.random() * (max - min + 1);
+    randomNum = Math.round(randomNum);
+    return randomNum;
+}
+
+document.querySelector('.js-product-form').addEventListener('submit', function() {
+    const price = document.querySelector('.js-product-details__currency').innerHTML;
+    const active = document.querySelectorAll('.product-details_active');
     const parameters = { price: price };
     [].forEach.call(active, function (element) {
         if (element.classList.contains('js-product-size__item')) {
@@ -53,21 +91,20 @@ document.querySelector('.js-product-details__buy').addEventListener('click', fun
         }
     });
 
-    const form = document.getElementById('order');
-    post(form, 'http://localhost:3000/', parameters);
+    const orderForm = document.getElementById('order');
+    sendRequest(orderForm, 'http://localhost:3000/', parameters);
 });
 
-document.querySelector('.js-search__submit').addEventListener('click', function() {
+document.querySelector('.js-search').addEventListener('submit', function() {
     const text = document.querySelector('.js-search__input').value;
     const parameters = { text: text };
 
-    const form = document.getElementById('search');
-    post(form, 'http://localhost:3000/', parameters);
+    const searchForm = document.getElementById('search');
+    sendRequest(searchForm, 'http://localhost:3000/', parameters);
 });
 
-function post(form, path, parameters) {
-    form.setAttribute('action', path);
-    form.setAttribute('method', 'post');
+function sendRequest(form, path, parameters) {
+    event.preventDefault();
     for (const key in parameters) {
         if (parameters.hasOwnProperty(key)) {
             const hiddenField = document.createElement('input');

@@ -7,8 +7,8 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "gulp",
     "dev": "gulp",
-    "prod": "gulp prod",
     "lint": "eslint src && stylelint src/less/*.less !src/less/normalize.less",
+    "prod": "NODE_ENV=production gulp prod",
     "precommit": "npm run lint"
   },
   "author": "Andrey Miskov",
@@ -31,7 +31,6 @@
     "gulp-eslint": "^4.0.0",
     "gulp-less": "^3.3.0",
     "gulp-sourcemaps": "^2.6.1",
-    "install": "^0.10.1",
     "jquery": "^3.2.1",
     "normalize.css": "^7.0.0"
   }

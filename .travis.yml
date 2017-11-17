@@ -8,3 +8,4 @@ deploy:
   skip_cleanup: true # Не чистим рабочую директорию
   github_token: $GITHUB_TOKEN
   local_dir: dist # название директории, из которой будут отдаваться файлы на сервере
+  
