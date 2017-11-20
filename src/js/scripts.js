@@ -1,4 +1,27 @@
 const Dispatcher = document.getElementById('doc');
+const retrievedItem = JSON.parse(localStorage.getItem('item'));
+
+window.onload = function() {
+    if (retrievedItem.color) {
+        const colorElements = document.querySelectorAll('.js-product-color__item');
+        [].forEach.call(colorElements, function (element) {
+            if (element.getAttribute('data-value') === retrievedItem.color) {
+                activate(element, true, 'product-details_active', 'product-details_inactive');
+                changePicture(retrievedItem.color);
+            }
+        });
+    } 
+    
+    if (retrievedItem.size) {
+        const sizeElements = document.querySelectorAll('.js-product-size__item');
+        [].forEach.call(sizeElements, function (element) {
+            if (element.getAttribute('data-value') === retrievedItem.size) {
+                activate(element, true, 'product-details_active', 'product-details_inactive');
+                changePrice();
+            }
+        });
+    }
+};
 
 class PropertySelector {
     constructor(el) {
@@ -28,6 +51,7 @@ class PropertySelector {
 
 new PropertySelector(document.getElementById('colorList'));
 new PropertySelector(document.getElementById('sizeList'));
+const item = new Object();
 
 Dispatcher.addEventListener('property-selected', ev => {
     const data = ev.detail;
@@ -36,12 +60,16 @@ Dispatcher.addEventListener('property-selected', ev => {
         changePicture(data.value);
         const colorElements = document.getElementsByClassName('js-product-color__item');
         updateBorders(colorElements, data.target);
+        item.color = data.value;
+        localStorage.setItem('item', JSON.stringify(item));
     }
 
     if (data.type === 'size') {
         changePrice();
         const sizeElements = document.getElementsByClassName('js-product-size__item');
         updateBorders(sizeElements, data.target);
+        item.size = data.value;
+        localStorage.setItem('item', JSON.stringify(item));
     }
 });
 
